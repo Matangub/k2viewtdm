@@ -1,0 +1,71 @@
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <div class="row">
+            <div class="col-lg-8">
+                <h5>{{ 'PRODUCT' | translate }} {{environmentCtrl.productData.product_name}}</h5>
+                <h5 style="padding-left:1em;font-weight: 300;" ng-if="environmentCtrl.productData.status == 'Inactive'">{{ 'INACTIVE' | translate }}</h5>
+            </div>
+            <div class="col-lg-4 pull-right">
+                <a uib-tooltip="Delete Product" tooltip-placement="left" type="button" role-handler role="1"
+                   ng-if="!environmentCtrl.disableChangeProduct" class="pull-right"
+                   mwl-confirm message="Are you sure you want to Delete Product?"
+                   confirm-text="Yes <i class='glyphicon glyphicon-ok'></i>" cancel-text="No <i class='glyphicon glyphicon-remove'></i>" placement="left"
+                   on-confirm="environmentCtrl.deleteProduct()" on-cancel="cancelClicked = true" confirm-button-type="danger" cancel-button-type="default"><i class="fa fa-trash fa-2x" style="color: #ec4758" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <form role="form" ng-submit="environmentCtrl.saveProductChanges()">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-12">
+                        <!--<label>{{"PRODUCT_NAME" | translate}}</label>-->
+                        <!--<input type="text" class="form-control" ng-model="environmentCtrl.productData.product_name" disabled>-->
+                        <a ng-click="environmentCtrl.openProductFullView()">{{environmentCtrl.productData.product_name}}</a>
+                        </input>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>{{"DATA_CENTER_NAME" | translate}}</label>
+                        <select class="form-control" width="'100%'" chosen ng-model="environmentCtrl.productData.data_center_id" ng-options="option.data_center_id as option.data_center_name for option in environmentCtrl.dataCenters | orderBy:'data_center_name'" required ng-disabled="environmentCtrl.disableChangeProduct">
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>{{"PRODUCT_VERSION" | translate}}</label>
+                        <select class="form-control" ng-model="environmentCtrl.productData.product_version" ng-options="option as option for option in environmentCtrl.productData.product_versions.split(',')"
+                               ng-disabled="environmentCtrl.disableChangeProduct">
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>{{"INTERFACES" | translate}}</label>
+                        <ul class="agile-list" style="padding-left: 0px">
+                            <li style="border-left: 3px solid #92569C;" class="success-element" ng-if="interface.env_product_interface_status == 'Active' || interface.interface_status == 'Active' " ng-repeat="interface in environmentCtrl.productData.interfaces">
+                                {{interface.interface_name}}&nbsp;&nbsp;&nbsp;&nbsp;Type: {{interface.interface_type_name}}
+                                <a ng-if="environmentCtrl.productData.status == 'Active' && (interface.interface_status == 'Active' || interface.env_product_interface_status == 'Active')"
+                                   ng-click="environmentCtrl.openEnvProductInterfaceEdit(interface.interface_id)" class="pull-right btn btn-xs {{interface.status == false ? 'btn-danger' : 'btn-success'}}">
+                                    {{interface.status == false ? "UPDATE" : "EDIT" | translate}}
+                                </a>
+                                <a  ng-if="environmentCtrl.productData.status == 'Inactive' || interface.env_product_interface_status == 'Inactive'"
+                                   ng-click="environmentCtrl.openEnvProductInterfaceEdit(interface.interface_id)" class="pull-right btn btn-xs {{interface.status == false ? 'btn-danger' : 'btn-success'}}">
+                                    {{"View" | translate}}
+                                </a>
+                                <input ng-if="interface.status == false" ng-model="interface.myTest" class="form-control" style="height:0px; padding: 0" required>
+                                <div class="agile-detail" ng-if="interface.status == false" style="color: #ec4758">
+                                    Please fill in DB Properties
+                                </div>
+                                <div class="agile-detail" ng-if="interface.env_product_interface_status == 'Inactive'" style="color: #ec4758">
+                                    Interface Deleted
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <button class="btn btn-primary pull-left" ng-if="!environmentCtrl.disableChangeProduct" type="submit" role-handler role="1">{{"SAVE_CHANGES" | translate}}</button>
+                            <button class="btn btn-primary pull-right" ng-click="environmentCtrl.getSummaryData()" type="button">{{"CLOSE" | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<fieldset class="animated fadeInRightBig">
+    <h2>{{"REQUEST_PARAMETERS" | translate}}</h2>
+    <div class="row">
+        <div class="col-lg-12 form-group">
+            <input ng-disabled="taskCtrl.disableChange" ng-if="taskCtrl.userRole.allowed_refresh_reference_data == true"  style="width: 100%" icheck type="checkbox" ng-model="taskCtrl.taskData.refresh_reference_data"/>
+            <label class="control-label" style="{{taskCtrl.userRole.allowed_refresh_reference_data == false ? 'padding-left : 22px' : ''}}">{{"REFRESH_REFERENCE_DATA" | translate}}
+                <small ng-show="taskCtrl.userRole.allowed_refresh_reference_data != true">(Not Allowed)</small>&nbsp;&nbsp;
+                <span style="font-weight: 400;">(Refresh reference tables in target testing environment with production)</span></label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 form-group">
+            <input ng-disabled="taskCtrl.disableChange" ng-if="taskCtrl.userRole.allowed_request_of_fresh_data == true"  style="width: 100%" icheck type="checkbox" ng-model="taskCtrl.taskData.request_of_fresh_data"/>
+            <label class="control-label" style="{{taskCtrl.userRole.allowed_request_of_fresh_data == false ? 'padding-left : 22px' : ''}}">
+                {{"REQUEST_OF_FRESH_DATA" | translate}}
+                <small ng-show="taskCtrl.userRole.allowed_request_of_fresh_data != true">(Not Allowed)</small>&nbsp;&nbsp;
+                <span style="font-weight: 400;">(Re-extract selected entities from production to get up-to-date production data for selected entities)</span></label>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 form-group">
+            <input ng-disabled="taskCtrl.disableChange" ng-if="taskCtrl.userRole.allowed_delete_before_load == true" style="width: 100%" icheck type="checkbox" ng-model="taskCtrl.taskData.delete_before_load"/>
+            <label class="control-label" style="{{taskCtrl.userRole.allowed_delete_before_load == false ? 'padding-left : 22px' : ''}}">{{"DELETE_BEFORE_LOAD" | translate}}
+                <small ng-show="taskCtrl.userRole.allowed_delete_before_load != true">(Not Allowed)</small>&nbsp;&nbsp;
+                <span style="font-weight: 400;">(Delete selected entities from target testing environment before re-loading them to the testing environment)</span></label>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 form-group">
+            <input ng-disabled="taskCtrl.disableChange" ng-if="taskCtrl.userRole.allowed_replace_sequences == true" style="width: 100%" icheck type="checkbox" ng-model="taskCtrl.taskData.replace_sequences"/>
+            <label class="control-label" style="{{taskCtrl.userRole.allowed_replace_sequences == false ? 'padding-left : 22px' : ''}}">{{"REPLACE_SEQUENCES" | translate}}
+                <small ng-show="taskCtrl.userRole.allowed_replace_sequences != true">(Not Allowed)</small>&nbsp;&nbsp;
+                <span style="font-weight: 400;">(Replace production sequences and generate new sequences in target testing environment for the selected entities)</span></label>
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Next</button>
+</fieldset>

@@ -1,0 +1,31 @@
+{
+  "name": "tdmfe",
+  "version": "0.0.0",
+  "authors": [
+    "Joe <joseph.karkaby@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "restangular": "~1.5.1",
+    "angular-translate": "~2.8.1",
+    "ngstorage": "~0.3.10",
+    "angular-translate-loader-static-files": "~2.8.1",
+    "angular-toastr": "^2.1.1",
+    "angular-sanitize": "^1.5.8",
+    "ng-ip-address": "^1.1.10",
+    "angular-ui-select": "^0.19.4",
+    "highcharts": "^5.0.0",
+    "angular-bootstrap-confirm": "^2.5.0"
+  },
+  "resolutions": {
+    "angular": ">=1.2.18"
+  }
+}

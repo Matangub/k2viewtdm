@@ -1,0 +1,92 @@
+<fieldset class="animated fadeInRightBig">
+    <h2>{{"REQUESTED_ENTITIES" | translate}}</h2>
+    <div class="row">
+        <div class="form-group col-lg-12">
+            <div class="col-lg-4">
+                <div class="form-group i-checks col-lg-12">
+                    <label>
+                        <input ng-disabled="taskCtrl.disableChange" icheck type="radio" ng-value="'given'" name="connectionRadio" ng-model="taskCtrl.selectFieldType"> {{"ENTITIES_LIST" | translate}}
+                    </label>
+                </div>
+                <div class="form-group i-checks col-lg-12" style="{{taskCtrl.userRole.allowed_random_entity_selection == false ? 'padding-left : 22px' : ''}}">
+                    <label>
+                        <input ng-disabled="taskCtrl.disableChange" ng-if="taskCtrl.userRole.allowed_random_entity_selection == true" icheck type="radio" ng-value="'random'" name="connectionRadio" ng-model="taskCtrl.selectFieldType"> {{"RANDOM_SELECTION" | translate}}
+                        <small ng-show="!taskCtrl.userRole.allowed_random_entity_selection">(Not Allowed)</small>
+                    </label>
+                </div>
+                <div class="form-group i-checks col-lg-12">
+                    <label style="{{taskCtrl.userRole.allowed_creation_of_synthetic_data == false ? 'padding-left : 22px' : ''}}">
+                        <input ng-disabled="taskCtrl.disableChange" ng-if="taskCtrl.userRole.allowed_creation_of_synthetic_data == true" icheck type="radio" ng-value="'synthetic'" name="connectionRadio" ng-model="taskCtrl.selectFieldType"> {{"CREATE_SYNTHETIC_ENTITIES" | translate}}
+                        <small ng-show="!taskCtrl.userRole.allowed_creation_of_synthetic_data">(Not Allowed)</small>
+                    </label>
+                </div>
+                <div class="form-group i-checks col-lg-12">
+                    <label>
+                        <input ng-disabled="taskCtrl.disableChange" icheck type="radio" ng-value="'parameters'" name="connectionRadio" ng-model="taskCtrl.selectFieldType"> {{"SELECT_PARAMETERS" | translate}}
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>{{"EXCLUSION_LIST" |  translate}}</label>
+                    <textarea ng-pattern="taskCtrl.excultionPattern" name="excultionEntitiesList" ng-disabled="taskCtrl.disableChange" rows="5" class="col-lg-12" ng-model="taskCtrl.taskData.entity_exclusion_list">
+                    </textarea>
+                    <div class="m-t-xs" ng-show="taskCtrl.requestedEntitiesForm.excultionEntitiesList.$invalid && requestedEntitiesForm.submitted">
+                        <small ng-if="taskCtrl.requestedEntitiesForm.excultionEntitiesList.$error.pattern" class="text-danger">Please Enter Entity IDs, separated by a comma</small>
+                    </div>
+                    <div class="m-t-xs" ng-show="taskCtrl.requestedEntities.entities_list && taskCtrl.taskData.entity_exclusion_list == taskCtrl.requestedEntities.entities_list">
+                        <small class="text-danger">Entities list is identical to exclusion list. Please  fix exclusion  list.</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group col-lg-8" ng-if="taskCtrl.selectFieldType == 'given'">
+                <textarea ng-disabled="taskCtrl.disableChange" ng-pattern="taskCtrl.entitiesPattern" required rows="5" name="entitiesList" class="col-lg-12" ng-model="taskCtrl.requestedEntities.entities_list">
+                </textarea>
+                <span ng-if="taskCtrl.requestedEntities.entities_list && requestedEntitiesForm.entitiesList.$invalid == false" style="margin-top: 2px" class="badge pull-right">{{taskCtrl.requestedEntities.entities_list.split(',').length}}/{{taskCtrl.taskData.number_of_entities_to_copy}}</span>
+                <span ng-if="requestedEntitiesForm.entitiesList.$error.required == true" style="margin-top: 2px" class="badge pull-right">0/{{taskCtrl.taskData.number_of_entities_to_copy}}</span>
+                <span ng-if="requestedEntitiesForm.entitiesList.$error.pattern == true" style="margin-top: 2px" class="badge pull-right">{{requestedEntitiesForm.entitiesList.$viewValue.split(',').length}}/{{taskCtrl.taskData.number_of_entities_to_copy}}</span>
+
+                <div class="m-t-xs" ng-show="taskCtrl.requestedEntitiesForm.entitiesList.$invalid && requestedEntitiesForm.submitted">
+                    <small ng-if="taskCtrl.requestedEntitiesForm.entitiesList.$error.required" class="text-danger">Please Enter Entity IDs, separated by a comma <span style="color: red">*</span></small>
+                    <small ng-if="taskCtrl.requestedEntitiesForm.entitiesList.$error.pattern" class="text-danger">Number of entities in entities list does not match number of entities, populated in General tab.Please enter Entity IDs, separated by a comma<span style="color: red">*</span></small>
+                </div>
+            </div>
+            <div class="form-group col-lg-8" ng-if="taskCtrl.selectFieldType == 'random'">
+
+            </div>
+            <div class="form-group col-lg-8" ng-if="taskCtrl.selectFieldType == 'synthetic'">
+                <input  name="synthetic" ng-disabled="taskCtrl.disableChange" required type="text" class="form-control" ng-model="taskCtrl.requestedEntities.synthetic" ng-pattern="taskCtrl.syntheticPattern">
+                <div class="m-t-xs">
+                    <small  class="text-danger">Please Enter Entity ID for duplication<span style="color: red">*</span></small>
+                </div>
+                <div class="m-t-xs" ng-show="taskCtrl.requestedEntitiesForm.synthetic.$invalid && requestedEntitiesForm.submitted">
+                    <small ng-if="taskCtrl.requestedEntitiesForm.synthetic.$error.pattern" class="text-danger">Entity ID cannot have comma or spaces<span style="color: red">*</span></small>
+                </div>
+            </div>
+            <div class="form-group col-lg-8" ng-if="taskCtrl.selectFieldType == 'parameters'">
+                <div class="col-lg-12">
+                    <div class="checkbox checkbox-primary col-lg-12">
+                        <input id="checkbox2" type="checkbox" ng-model="taskCtrl.parametersRandom">
+                        <label for="checkbox2">
+                            Use Parameters with Random selection
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <label>{{"PARAMETERS_COUNT" | translate}} = {{taskCtrl.parametersCount}}</label>
+                        </div>
+                        <div class="col-lg-12">
+                            <query-builder form="requestedEntitiesForm" disablechange="taskCtrl.disableChange" group="taskCtrl.filter.group" params="taskCtrl.parameters"></query-builder>
+                            <div class="m-t-xs" ng-show="taskCtrl.parametersError == true">
+                                <small class="text-danger">Please Choose Parameters <span style="color: red">*</span></small>
+                            </div>
+                            <p>{{taskCtrl.requestedEntities.query_parameters}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Next</button>
+</fieldset>

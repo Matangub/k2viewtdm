@@ -1,0 +1,57 @@
+<div class="col-lg-12">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h2>{{ 'NEW_TASK' | translate }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="ibox-content">
+            <div class="wizard">
+                <div class="steps clearfix">
+                    <ul>
+                        <li class="pull-left" ng-class="{current : newTaskCtrl.step == 1}">
+                            <a class="btn-default" ng-click="newTaskCtrl.openStep(1)"><span>1</span> {{"GENERAL" | translate}}</a>
+                        </li>
+                        <li class="pull-left" ng-class="{current : newTaskCtrl.step == 2}">
+                            <a class="btn-default" ng-click="newTaskCtrl.openStep(2)"><span>2</span> {{"REQUESTED_ENTITIES" | translate}}</a>
+                        </li>
+                        <li class="pull-left" ng-class="{current : newTaskCtrl.step == 3}">
+                            <a class="btn-default" ng-click="newTaskCtrl.openStep(3)"><span>3</span> {{"REQUEST_PARAMETERS" | translate}}</a>
+                        </li>
+                        <li class="pull-left" ng-class="{current : newTaskCtrl.step == 4}">
+                            <a class="btn-default" ng-click="newTaskCtrl.openStep(4)"><span>4</span> {{"EXECUTION_TIMING" | translate}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="wizard">
+                    <div  class="content" ng-show="newTaskCtrl.step == 1">
+                        <form name="generalForm" role="form" novalidate ng-init="newTaskCtrl.initGeneral(generalForm)"
+                              ng-submit="newTaskCtrl.generalNext(generalForm)" class="p-lg">
+                            <div ng-include="'views/tasks/newTask/general.html'"></div>
+                        </form>
+                    </div>
+                    <div  class="content" ng-show="newTaskCtrl.step == 2">
+                        <form name="requestedEntitiesForm" role="form"  novalidate
+                              ng-submit="newTaskCtrl.requestedEntitiesNext(requestedEntitiesForm)" class="p-lg">
+                            <div ng-include="'views/tasks/newTask/requestedEntities.html'"></div>
+                        </form>
+                    </div>
+                    <div  class="content" ng-show="newTaskCtrl.step == 3">
+                        <form name="requestParametersForm" role="form" novalidate
+                              ng-submit="newTaskCtrl.requestParametersNext(requestParametersForm)" class="p-lg">
+                            <div ng-include="'views/tasks/newTask/requestParameters.html'"></div>
+                        </form>
+                    </div>
+                    <div  class="content" ng-show="newTaskCtrl.step == 4">
+                        <form name="executionTimingForm" role="form" novalidate
+                              ng-submit="newTaskCtrl.executionTimingFinish(executionTimingForm)" class="p-lg">
+                            <div ng-include="'views/tasks/newTask/executionTiming.html'"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

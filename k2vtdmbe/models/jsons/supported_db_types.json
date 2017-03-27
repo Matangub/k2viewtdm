@@ -1,0 +1,92 @@
+[
+  {
+
+    "db_type_id":"1",
+    "db_type_name":"Oracle",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"2",
+    "db_type_name":"Sql Server",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"3",
+    "db_type_name":"DB2",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"4",
+    "db_type_name":"Netezza",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"5",
+    "db_type_name":"Vertica",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"6",
+    "db_type_name":"Postgres",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"7",
+    "db_type_name":"MySql",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"8",
+    "db_type_name":"Cassandra",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"9",
+    "db_type_name":"Hadoop Hive",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"10",
+    "db_type_name":"IMS",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"11",
+    "db_type_name":"Salesforce",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"12",
+    "db_type_name":"Sqlite",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"13",
+    "db_type_name":"Sybase ASE",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"14",
+    "db_type_name":"Sybase IQ",
+    "db_type_description":""
+  },
+  {
+
+    "db_type_id":"15",
+    "db_type_name":"Teradata",
+    "db_type_description":""
+  }
+]

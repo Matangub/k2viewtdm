@@ -1,0 +1,58 @@
+<fieldset class="animated fadeInRightBig">
+    <h2>General</h2>
+    <div class="row">
+        <div class="form-group col-lg-5">
+            <label>{{"TASK_TITLE" |  translate}} <span style="color: red">*</span></label>
+            <input type="text" name="taskTitle" class="form-control" ng-model="newTaskCtrl.taskData.task_title" required auto-focus>
+            <div class="m-t-xs" ng-show="generalForm.taskTitle.$invalid && generalForm.submitted">
+                <small class="text-danger" ng-show="generalForm.taskTitle.$error.required">Please input a Task Title</small>
+            </div>
+        </div>
+    </div>
+    <div class="row taskGeneral">
+        <div class="form-group col-lg-5">
+            <label>Environment Name <span style="color: red">*</span></label>
+            <select width="'100%'" name="taskEnv" required class="form-control" chosen ng-change="newTaskCtrl.environmentChange()"
+                    ng-model="newTaskCtrl.taskData.environment_id" ng-size="4"
+                    ng-options="env.environment_id as env.environment_name for env in newTaskCtrl.allEnvironments | orderBy:'environment_name'">
+                <option></option>
+            </select>
+            <div class="m-t-xs" ng-show="generalForm.taskEnv.$invalid && generalForm.submitted">
+                <small class="text-danger" ng-show="generalForm.taskEnv.$error.required">Please Choose Environment</small>
+            </div>
+        </div>
+        <div class="form-group col-lg-5">
+            <label>{{"NUMBER_OF_ENTITIES" |  translate}} <span style="color: red">*</span></label>
+            <input ng-blur="newTaskCtrl.updateEntitiesPattern();" name="numberOfEntities" required type="number" class="form-control" min="0"
+                   max="{{newTaskCtrl.userRole.maxToCopy}}" ng-model="newTaskCtrl.taskData.number_of_entities_to_copy">
+            <div class="m-t-xs" ng-show="generalForm.numberOfEntities.$invalid && generalForm.submitted">
+                <small class="text-danger" ng-show="generalForm.numberOfEntities.$error.required">Please input Number of entities</small>
+                <small class="text-danger" ng-show="generalForm.numberOfEntities.$error.max">Maximum Entites to Copy is {{newTaskCtrl.userRole.maxToCopy}}</small>
+                <small class="text-danger" ng-show="generalForm.numberOfEntities.$error.min">Minimum Entites to Copy is 1</small>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-lg-5 placeTop">
+            <label>Business Entity <span style="color: red">*</span></label>
+            <select width="'100%'" name="taskBE" required class="form-control" chosen ng-change="newTaskCtrl.businessEntityChange()"
+                    ng-model="newTaskCtrl.taskData.be_id"
+                    ng-options="be.be_id as be.be_name for be in newTaskCtrl.businessEntities | orderBy:'be_name'">
+            </select>
+            <div class="m-t-xs" ng-show="generalForm.taskBE.$invalid && generalForm.submitted">
+                <small class="text-danger" ng-show="generalForm.taskBE.$error.required">Please Choose Business Entity</small>
+            </div>
+        </div>
+        <div class="form-group col-lg-5">
+            <label>Products <span style="color: red">*</span></label>
+            <select width="'100%'" name="taskProduct" ng-required="true" chosen multiple class="chosen-select form-control" tabindex="4"
+                    ng-model="newTaskCtrl.products"
+                    ng-options="product.product_id as product.product_name for product in newTaskCtrl.allProducts | orderBy:'product_name'">
+            </select>
+            <div class="m-t-xs" ng-show="generalForm.taskProduct.$invalid && generalForm.submitted">
+                <small class="text-danger" ng-show="generalForm.taskProduct.$error.required">Please Choose at least one product</small>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Next</button>
+</fieldset>

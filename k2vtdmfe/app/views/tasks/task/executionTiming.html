@@ -1,0 +1,31 @@
+<fieldset class="animated fadeInRightBig">
+    <h2>{{"EXECUTION_TIMING" | translate}}</h2>
+    <div class="row">
+        <div class="col-lg-4 form-group">
+            <label>
+                <input ng-disabled="taskCtrl.disableChange" icheck type="radio" ng-value="'immediate'" name="scheduleRadio" ng-model="taskCtrl.selectSchedule"> {{"IMMEDIATE_EXECUTION" | translate}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 form-group">
+            <label>
+                <input ng-disabled="taskCtrl.disableChange" ng-if="taskCtrl.userRole.allowed_task_scheduling == true" icheck type="radio" ng-value="'schedule'" name="scheduleRadio" ng-model="taskCtrl.selectSchedule"> {{"SCHEDULING_PARAMETERS" | translate}}
+            </label>
+        </div>
+        <div class="form-group col-lg-9" ng-if="taskCtrl.selectSchedule == 'schedule'">
+            <p style="color : #ec4758" >{{taskCtrl.timeZoneMessage}}</p>
+            <div class="checkbox checkbox-primary col-lg-2">
+                <input id="checkbox1" type="checkbox" ng-model="taskCtrl.advancedSchedule" ng-change="taskCtrl.advancedSchedule == false ? taskCtrl.scheduleData = '' : ''">
+                <label for="checkbox1">
+                    Advanced
+                </label>
+            </div>
+            <div class="col-lg-10">
+                <input required style="margin-bottom: 20px;" ng-disabled="taskCtrl.advancedSchedule == false" type="text" ng-model="taskCtrl.scheduleData" class="form-control">
+            </div>
+            <cron-selection ng-if="taskCtrl.advancedSchedule == false" disablechange="taskCtrl.disableChange" form="executionTimingForm" ng-model="taskCtrl.scheduleData" config="taskCtrl.cronTabConfig"></cron-selection>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary" ng-if="!taskCtrl.disableChange">Finish</button>
+</fieldset>

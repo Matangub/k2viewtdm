@@ -1,0 +1,21 @@
+<div class="middle-box text-center loginscreen  animated fadeInDown" ng-controller="LoginCtrl as login" style="padding-top: 15%">
+    <div>
+        <img src="img/cropped-k2view_logo.png" alt="personetics logo" class="logo-img" style="width: 100%;">
+        <form name="loginForm" class="m-t" role="form" ng-submit="login.login()">
+            <div class="form-group">
+                <input name="username" type="text" class="form-control" placeholder="{{ 'USERNAME' | translate }}" ng-model="login.username" required>
+            </div>
+            <div class="form-group">
+                <input name="password" type="password" class="form-control" placeholder="{{ 'PASSWORD' | translate }}" ng-model="login.password" required>
+            </div>
+            <div>
+                <label style="color : red">{{login.errorMessage}}</label>
+            </div>
+            <button type="submit" class="btn btn-primary block full-width m-b" >{{ 'LOGIN' | translate }}</button>
+        </form>
+        <div>
+            <p class="m-t"><small>TDM by K2View &copy; {{login.currentYear}}</small></p>
+            <small>Version {{login.version}}</small>
+        </div>
+    </div>
+</div>

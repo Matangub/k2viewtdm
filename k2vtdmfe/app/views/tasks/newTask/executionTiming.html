@@ -1,0 +1,37 @@
+<fieldset class="animated fadeInRightBig">
+    <h2>{{"EXECUTION_TIMING" | translate}}</h2>
+    <div class="row">
+        <div class="col-lg-4 form-group">
+            <label>
+                <input icheck type="radio" ng-value="'immediate'" name="scheduleRadio" ng-model="newTaskCtrl.selectSchedule"> {{"IMMEDIATE_EXECUTION" | translate}}
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 form-group">
+            <label>
+                <input ng-if="newTaskCtrl.userRole.allowed_task_scheduling == true" icheck type="radio" ng-value="'schedule'" name="scheduleRadio" ng-model="newTaskCtrl.selectSchedule"> {{"SCHEDULING_PARAMETERS" | translate}}
+            </label>
+        </div>
+        <div class="form-group col-lg-9" ng-if="newTaskCtrl.selectSchedule == 'schedule'">
+            <p style="color : #ec4758" >{{newTaskCtrl.timeZoneMessage}}</p>
+<!--
+            <input required style="margin-bottom: 20px;" ng-disabled="true" type="text" ng-model="newTaskCtrl.scheduleData" class="form-control">
+            <cron-selection form="executionTimingForm" ng-model="newTaskCtrl.scheduleData" config="newTaskCtrl.cronTabConfig"></cron-selection>
+-->
+
+            <div class="checkbox checkbox-primary col-lg-2">
+                <input id="checkbox1" type="checkbox" ng-model="newTaskCtrl.advancedSchedule" ng-change="newTaskCtrl.advancedSchedule == false ? newTaskCtrl.scheduleData = '' : ''">
+                <label for="checkbox1">
+                    Advanced
+                </label>
+            </div>
+            <div class="col-lg-10">
+                <input required style="margin-bottom: 20px;" ng-disabled="newTaskCtrl.advancedSchedule == false" type="text" ng-model="newTaskCtrl.scheduleData" class="form-control">
+            </div>
+            <cron-selection ng-if="newTaskCtrl.advancedSchedule == false" form="executionTimingForm" ng-model="newTaskCtrl.scheduleData" config="newTaskCtrl.cronTabConfig"></cron-selection>
+
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Finish</button>
+</fieldset>

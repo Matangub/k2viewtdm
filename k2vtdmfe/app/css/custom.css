@@ -1,0 +1,134 @@
+.logo {
+    width: 195px;
+    height: 33px;
+    vertical-align: bottom;
+    padding-right: 13px;
+    padding-left: 12px;
+}
+
+.btn-primary {
+    background-color: #51B3C3;
+    border-color: #51B3C3;
+    color: #FFFFFF;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open .dropdown-toggle.btn-primary,
+.btn-primary:active:focus,
+.btn-primary:active:hover,
+.btn-primary.active:hover,
+.btn-primary.active:focus {
+    background-color: #51B3C3;
+    border-color: #51B3C3;
+    color: #FFFFFF;
+}
+.pace .pace-progress{
+    background: #51B3C3;
+}
+
+.nav-fourth-level li {
+    border-bottom: none !important;
+}
+
+.nav-fourth-level li a {
+    padding-left: 62px;
+}
+
+/*.breadcrumb {*/
+    /*background-color: transparent;*/
+    /*padding: 0;*/
+    /*margin: 17px 5px 5px 20px;*/
+    /*font-size: 17px;*/
+/*}*/
+
+body.mini-navbar .nav-header {
+    padding: 0;
+    background-color: transparent;
+}
+
+.progress-bar {
+    background-color: #51B3C3;
+}
+
+.localytics-chosen {
+    display: block !important;
+    position:absolute;
+    clip:rect(0,0,0,0);
+    height: 29px;
+}
+
+.group-conditions {
+    margin-top: 4px;
+}
+
+.alert.group {
+    margin-top: 4px;
+}
+
+table .form-control {
+    width: 100% !important;
+}
+
+.btn.btn-disabled{
+    cursor: default;
+}
+
+.ajax-loader {
+    padding-left: 39%;
+}
+
+.form-control:focus,
+.single-line:focus {
+    border-color: #51B3C3 !important;
+}
+
+body{
+    background-color: #2f4050;
+}
+
+.highcharts-background{
+    fill : transparent !important;
+}
+.highcharts-credits {
+    display : none;
+}
+
+
+.fa-play:before {
+    padding-left: 3px;
+}
+
+.form-horizontal .control-label{
+    text-align: left;
+}
+
+.dataTables_wrapper {
+    overflow-x: scroll;
+}
+
+.progress {
+    margin-bottom: 0px;
+}
+
+.wizard, .tabcontrol {
+    overflow: initial !important;
+}
+
+.wizard > .content {
+    overflow: initial !important;
+}
+
+.popover {
+    max-width: 650px;
+}
+
+.chosen-container .chosen-results {
+    max-height: 160px;
+}
+
+.placeTop .chosen-drop{
+    top: inherit;
+    bottom: 100%;
+}

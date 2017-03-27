@@ -1,0 +1,96 @@
+<div class="ibox float-e-margins">
+    <div class="ibox-title">
+        <div class="row">
+            <div class="col-lg-8">
+                <h5>{{ 'NEW_ROLE' | translate }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="ibox-content">
+        <form role="form" ng-submit="environmentCtrl.addNewRole()">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-12">
+                        <label>{{"NAME" | translate}}</label>
+                        <input type="text" class="form-control" ng-model="environmentCtrl.roleData.role_name" required>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>{{"DESCRIPTION" | translate}}</label>
+                        <input type="text" class="form-control" ng-model="environmentCtrl.roleData.role_description">
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <label>{{"NUMBER_OF_ENTITIES" | translate}}</label>
+                        <input style="width: 100%" type="number" class="form-control" min="1" ng-change="environmentCtrl.roleData.allowed_number_of_entities_to_copy === undefined ? environmentCtrl.roleData.allowed_number_of_entities_to_copy = 1 : environmentCtrl.roleData.allowed_number_of_entities_to_copy" ng-model="environmentCtrl.roleData.allowed_number_of_entities_to_copy"/>
+                    </div>
+                    <div class="form-group col-lg-12" ng-if="!environmentCtrl.hideUsersInput">
+                        <label>{{"TESTERS" | translate}}</label>
+                        <select width="'100%'"  chosen multiple class="form-control chosen-select" ng-model="environmentCtrl.testers" ng-options="option as option.username for option in environmentCtrl.allTesters track by option.user_id">
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <div>
+                            <label>
+                                <input style="width: 100%" icheck type="checkbox" ng-model="environmentCtrl.roleData.allowed_delete_before_load"/>
+                                {{"DELETE_BEFORE_LOAD" | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <div>
+                            <label>
+                                <input style="width: 100%" icheck type="checkbox" ng-model="environmentCtrl.roleData.allowed_creation_of_synthetic_data"/>
+                                {{"CREATE_OF_SYNTHETIC_DATA" | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <div>
+                            <label>
+                                <input style="width: 100%" icheck type="checkbox" ng-model="environmentCtrl.roleData.allowed_random_entity_selection"/>
+                                {{"RANDOM_ENTITY_SELECTION" | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <div>
+                            <label>
+                                <input style="width: 100%" icheck type="checkbox" ng-model="environmentCtrl.roleData.allowed_request_of_fresh_data"/>
+                                {{"REQUEST_OF_FRESH_DATA" | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6" >
+                        <div>
+                            <label>
+                                <input  style="width: 100%" icheck type="checkbox" ng-model="environmentCtrl.roleData.allowed_refresh_reference_data"/>
+                                {{"REFRESH_REFERENCE_DATA" | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        <div>
+                            <label>
+                                <input style="width: 100%" icheck type="checkbox" ng-model="environmentCtrl.roleData.allowed_task_scheduling"/>
+                                {{"TASK_SCHEDULING" | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-12">
+                        <div>
+                            <label>
+                                <input style="width: 100%" icheck type="checkbox" ng-model="environmentCtrl.roleData.allowed_replace_sequences"/>
+                                {{"REPLACE_SEQUENCES" | translate}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <button class="btn btn-primary pull-left" type="submit">{{"ADD" | translate}}</button>
+                            <button class="btn btn-primary pull-right" ng-click="environmentCtrl.getSummaryData()" type="button">{{"CLOSE" | translate}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
